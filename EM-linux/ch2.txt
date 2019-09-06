@@ -1,0 +1,39 @@
+root folder is every thing
+
+/
+
+/bin  mean common exec command for every user, such as cp rm ls
+
+/boot mean kernal and configuration
+/boot/grub mean file to be use when boot system such as font 
+
+/dev mean file to for hardware/virtual device such as harddisk, partition in harddisk
+
+/etc mean configuration file for program/application 
+
+/home mean for user folder here 
+
+/lib
+/lib32
+/lib64    mean share file for program/app to be use 
+
+/lost+found mean to keep broken file such during download incompletion
+
+/media mean for special device such as usb device
+
+/mnt mean for special-mount device, external hard drive , new hard drive
+
+/opt mean for diy software put here
+
+/proc mean for process on system happen in machine 
+
+/root mean root-user-home directory
+
+/sbin mean exec command for system for system admin to use this command
+
+/tmp mean temporary file , it will be deleted when reboot
+
+/usr mean to keep file that close to user (such as ls command of /user/bin will activate instead of ls in /bin)
+
+/var mean variable file 
+/var/log mean system log

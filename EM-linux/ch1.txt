@@ -1,0 +1,29 @@
+1. linux provide free source code of linux
+   https://github.com/torvalds/linux
+   infinite number of people contribute to linux 
+
+2. install update without reboot machine
+   window need reboot
+
+3. plug device without driver installation (driver already in linux)
+   window need install driver
+
+4. can run linux from usb drive, cd, dvt etc (small enough)
+
+5. linux can run for years without reboot or slowdown  (stable, less memory fragmentation)
+   window slowdown
+
+6. linux can run on any hardware, old one or new one
+   many linux-version small (32 MB) or big one
+
+7. linux can be fixed with cd/usb (kernal can run on memory)
+
+8. get upgrade is single command
+
+9. move hard drvie to different machine
+
+10. customize icon,font,theme, task bar, easy 
+
+11. linux less virus, malware, (thing do not auto run, from official respo )
+
+12. 

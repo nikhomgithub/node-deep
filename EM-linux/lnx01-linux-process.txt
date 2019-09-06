@@ -1,0 +1,89 @@
+init process do not have parent process
+init proces is no.1 process in linux
+
+$ps -f 1 mean see proces id#1 
+UID        PID  PPID  C STIME TTY      STAT   TIME CMD
+root         1     0  0 03:58 ?        Ss     0:03 /sbin/init splash
+
+PPID = parent process id = 0 mean no parent, but it call by kernal in kernal space
+PID = 1 meand  process id = 1 
+CMD /sbin/init splash mean command location 
+all process is in user space not kernal space 
+
+$ ps mean to see current process
+  PID TTY          TIME CMD
+ 5779 pts/0    00:00:00 bash
+ 5803 pts/0    00:00:00 ps
+
+
+ $ ps -f   mean to show more detail of process 
+UID        PID  PPID  C STIME TTY          TIME CMD
+nikhom    5779  5770  0 04:20 pts/0    00:00:00 bash
+nikhom    5816  5779  0 04:21 pts/0    00:00:00 ps -f
+
+$ sleep 100  mean to sleep for 100 second and bash will no respond because , cpu runnt other process
+ctrl c mean to kill current process 
+
+ctrl z mean to pause current process for a while, and get back to bash
+$jobs mean to see what process is running
+
+$ sleep 360   ctrl z
+$ jobs 
+$ ps -f  to see current process in job table
+UID        PID  PPID  C STIME TTY          TIME CMD
+nikhom    5779  5770  0 04:20 pts/0    00:00:00 bash
+nikhom    5881  5779  0 04:26 pts/0    00:00:00 sleep 360
+nikhom    5890  5779  0 04:27 pts/0    00:00:00 ps -f
+
+$ fg mean to bring process to forgfound
+$ bg mean to bring process to backgfound 
+
+$ sleep 700 & mean to run sleep process in background 
+$ sleep 701
+$ sleep 702
+[1]   Running                 sleep 701 &
+[2]-  Running                 sleep 702 &
+[3]+  Running                 sleep 703 &
+$ fg %3   mean to bring job [3] to forground in stead of bash
+ctrl Z to bring it to back ground again 
+
+to kill bg process is to bring to fg and use ctrl c to kill process
+$ fg %1
+ctrl C 
+
+$ ps ax | grep sleep   mean to find process command name with sleep 
+ 5960 pts/0    S      0:00 sleep 701
+ 5961 pts/0    S      0:00 sleep 702
+ 5962 pts/0    T      0:00 sleep 703
+
+$ kill -l mean to see all signal that can send by kill
+ 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP
+ 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1
+11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM
+16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP
+21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ
+26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR
+31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3
+38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8
+43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13
+48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
+53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
+58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
+63) SIGRTMAX-1	64) SIGRTMAX	
+
+$ kill -15  5960  mean to kill 5960 with SIGTERM which will log in jobs table but mention Terminated
+[1]   Terminated              sleep 701
+[2]-  Running                 sleep 702 &
+[3]+  Stopped                 sleep 703
+
+$ kill -9  5960    mean to kill dirty of 5960 , take process out of jobs table
+
+Goo kill process
+kill -15  [pid] <- send SIGTERM
+kill      [pid] <- send SIGTERM (15 defalut in kill)
+kill -2   [pid] <- send SIGINT
+kill -1   [pid] <- send SIGHUP
+kill -9   [pid] <- send sigkill (dirty kill)
+
+kill -20  [pid] <- to pause process
+kill -18  [pid] <- to bring back process

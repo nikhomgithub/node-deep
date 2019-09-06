@@ -1,0 +1,185 @@
+Linux Training Academy
+
+https://www.youtube.com/watch?v=qAMWG86sEm8
+Linux System Administration Crash Course
+
+
+Linux Boot Process
+
+ฺBIOS = Basic Input Output System
+       - firmware use in booting process which first software that is run   
+         when computer power on 
+       - bios run independent just to test hardware component  
+       - load boot loader (linux) / operating system (window)
+       
+
+Boot Loader = there are 2 version of loader so far  
+    - LILO linux Loader  (old version)
+    - GRUB Grand unified boot loader (new version)
+        booter loader is to start operating system with initrd
+
+initrd => initial ram disk 
+    initrd is temporary file to be loaded to ram when system boot
+    this temporary file is to detect hardware ,run modules to get system file 
+    mounted on /boot  such as  vmlinuz/vmlinux
+  
+vmlinuz/vmlinux => compressed kernal in vm format 
+    when boot machin message that show on screen is run by kernal
+    $dmesg or /var/log/dmesg mean to see message in ring buffer including those of kernal 
+
+telinit (init) for runlevel
+    = is to tell linux which runlevel and target to be used 
+    linux have many level to run which ic control by init program
+    run level 0  mean power off system 
+    run level 1  mean single user mode
+    run level 2-5 mean normal system operation 
+    run level 6 mean reboot system 
+
+SystemD by target 
+    systemctl (systemd) is now use instead of telinit 
+    command that can be use instead of runlevel 
+    shutdown
+    reboot
+    poweroff
+
+System Logging
+    Syslog standard for all application to use and save their log message in central location
+    How to categorize log message 
+    Facilities (where message come from )
+    Serverities (type of message)
+        emergency, alert, critical, error, warning, notice, info 
+    syslog servers such as syslogd, rsyslog, syslog-ng
+        syslog server will manage message base on facility / serverities such as keep in /var/log or send via network
+    LOG command
+    $logger is to keep all log message in your application
+    $logrotate is to keep log message until it is replace by new one as rotation concept to save disk space
+
+Disk Management Partition
+    Type of Parition table
+        MBR - Master Boot Record (old technology)
+        GPT - GUID Partition table (support 128 partition, 9.4 seta byte )
+    Mount Point = "/" or root directory 
+        such as partition B = /B  similart to drive:B in window 
+    Command to modify partition 
+    $fdisk
+    $gdisk
+    $parted
+
+    Every partition must has file system
+    $mkfs 
+        $mkfs -t mean type of Device    
+        $mkfs -t ext4 /dev/sdb3
+    $mount
+        $mount 
+        $mount /dev/sdb3 /opt    
+    $df to see space use
+    $unmount
+        $unmount/opt
+        $unmount/dev/sdb3
+    
+Disk Management - File System table
+    /etc/fstab
+    view UUIDs (universl unique identifier) and labels
+        $lsblk -f    to see all device attach to system
+        $blkid       to see all uuid of device attach to system
+    create tools
+        $e2label     to set label (name) of device
+
+
+Manageing User and Groups
+    Account infor store in 
+    /etc/passwd 
+    /etc/shadow (read by suuper user only)
+    
+    Account have attributes as 
+        username, UID, GID (default group), comment, home directory, shell
+
+    $useradd
+    $userdel
+    $usermod
+
+    /etc/group
+    $groupadd
+    $groupdel
+    $groupmod
+    $groups
+    $group json
+
+Switch user and shutdown
+    $su mean to switch user
+    $whoami
+    $sudo 
+    $sudo -s or $sudo su
+    $visudo  mean to edit sudoers file
+
+TCP/IP Networking
+    IP address => xxx.xxx.xxx.xxx
+    Subnet mask
+    Broadcast address
+
+    class network
+    class    network             Ex                                host allowed
+    A    1.x.x.x->127.x.x.x      127.0.0.0-127.255.255.255         16,777,216
+    B  128.0.x.x->191.255.x.x    128.0.0.0-128.0.255.255           65,536 
+    C  192.0.0.x->233.255.255.x  192.0.0.0-192.0.0.255             255 
+
+    subnet mask  use to split ip address 
+        First  - network id 
+        Second - host address
+    subnet mask
+        Class A : 255.0.0.0
+        Class B : 255.255.0.0
+        Class C: 255.255.255.0
+
+        CIDR- Classless Interdomain Routing
+        Private Address space (not for public internet)
+        10.0.0.0-10.255.255.255       for class A
+        172.16.0.0-172.31.255.255     for class B
+        192.168.0.0 - 192.168.255.255 for class C 
+
+    To see ip address
+    $ifconfig
+    To show host name
+    $hostname
+    $hostname -f 
+    $uname -n
+
+Linux Networking
+    DNS and name resolution    id address <-> hostname
+        $host [name]
+        $dig
+    /etc/host      have list of hostname+ip address (it can store private host for internal communication)
+    /etc/nsswitch.conf   to config how system check hostname
+
+Network port
+    to indentify service on each host
+    well-known/privieged/system port (1->1023) only super user can use these port
+    unprivilege (1024-65535)
+
+    DHCP  => dynamic host configure for assign internal host address to device 
+    Static IP address
+    Ubuntu /etc/network/interfaces
+
+    $ip or $ifconfig to manually config network
+    $ifup or $ifdown 
+
+๋Jobs and Processes
+    ps , ctrl-c, ctrl-z , bg,  fg,  jobs, kill 
+
+Schedule jobs with cron
+    cron service run schedules jobs
+    $crontab    to schedule job such as rotate log file or other routine job
+
+Managing software
+    Package
+    Package Manager
+    RPM yum , rpm 
+    DEB apt, dpkg
+
+Boot process
+System Logging
+Disk management and file system creation
+Manage user and group
+Linux Networking
+Process and job management
+Linux shell script

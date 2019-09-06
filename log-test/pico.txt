@@ -1,0 +1,64 @@
+https://www.youtube.com/watch?v=Dnx2SPdcDSU
+
+To improve server performance
+
+- disable logging increase speed
+- normally we log to see what happen and keep to see somethingwrong in server and we can debug
+- log.info , log.debug  // command for log
+-  1 log line = 0.22 ms, 2000 req/second  = 440 ms    
+-  10 log lines = 4400 ms = 4.4 second
+
+-  Adaptor problem
+-  log.info > adaptor (log message > json stringnify to render > socket (file encrypt))
+
+The best module for logging (split2,pino)
+
+const split = require('split2)
+process.stdin.pipe(split(JSON.parse))
+  .on('data',(obj)=>{
+      console.log(Object.key(obj))
+  })
+
+Pino  = > is good logging software 
+Bunyan API
+
+const pino = require('pino')()
+pino.info('hello world')
+pino.debug({
+    big:'object
+},'with message')
+
+10,000 log line = 250 ms
+
+with extreme Mode run faster
+const pino = require('pion')({
+    extreme : true
+})
+pino.debug({
+    big:'object
+},'with message')
+
+20.000 log line = 250 ms
+at 12 minute is in dept process crash , core, batching , javascript crash 
+
+Many pino logger program
+express-pino-logger
+hapi-pino
+restify-pino-logger
+koa-pino-logger
+pino-https
+
+Casue of problem
+avoid JSON.stringify
+fast-safe-stringify $npm install fast-safe-stringify //faster
+Date.now() //faster
+new Date().toISOString() //slower
+flattenString by $npm install flatstr // make faster 
+quick-format //npm install quick-format
+
+Tool to test backend 
+Framegraphs
+0x
+AutoCannon  Http benchmarking 
+
+Node Process......

@@ -1,0 +1,27 @@
+https://www.youtube.com/watch?v=AtEqbYTLHfs
+
+systemd basics
+
+LearnLinux.tv
+
+deamon = background program
+
+$systemctl list-units  | grep .service
+   //mean to see what are background service 
+
+accounts-daemon.service                                                                  loaded active running   Accounts Service                                                          
+acpid.service                                                                            loaded active running   ACPI event daemon                                                         
+alsa-restore.service   
+
+$systemctl status ssh.service
+    Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+    Active: active (running)
+    //me we check status of ssh.service,     loaded  meant what computer reboot, 
+      it will get it from file ...../ssh.service:   and it is enabled (auto run)
+    
+$sudo systemctl disable ssh.service  
+    //mean not want to run automatically when reboot
+
+$systemctl --failed 
+    //list failed-start(dead) unit
+ 
