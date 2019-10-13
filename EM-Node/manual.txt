@@ -33,6 +33,32 @@ linux parallel outside node
   fs.readFile
 
 ========================
+callback ==> make asnyc to sync
+
+promise ==> make asnyc to sync =>new Promise (resolve, reject) 
+
+create promise
+      a= new Promise((resolve,reject)=>{ 
+        resolve('good');        //will look for .then
+        //reject('bad');        //will look for .catch
+      }
+      
+      a.then(getResolve=>{})
+      a.catch(getReject=>{})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
