@@ -1,0 +1,38 @@
+  nums.foreach(()=>{})
+block scope with let
+  for (let i=1; i<=4;++i){}
+default params
+  function test1(a,b,c=3){}
+variadic 
+  function sum2(x,y,...nums){}
+spread operator  
+  var a=[1,2,3];
+  var b=[...a,4,5];
+short hand
+  var e={c,d}  //mean e={c:c, d:d}
+object key
+  console.log(object.something)
+  console.log(object['any thing'])
+method notation in objects
+  var methods = {
+    a:function(){  },
+    b(){ },
+    c:()=>{ }
+  }
+  methods.a(), method.b(), method.c()
+object destructuring
+  nums={one:1,two:2,three:3};
+  {one,two,three}=nums;
+
+=========================
+Event loop  ==> single Thread with asynchronous & linux parallel
+Async function
+  setTimeout()
+
+linux parallel outside node 
+  fs.readFile
+
+========================
+
+
+
